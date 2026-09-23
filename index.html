@@ -1,32 +1,91 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>Birthday Trip</title>
-  <link rel="stylesheet" href="./style.css">
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <main class="start-screen">
-    <div class="card">
-      <p class="small-text">Happy Birthday</p>
+  <!-- =========================
+       ログイン画面
+  ========================== -->
+  <section id="loginScreen" class="login-screen">
 
-      <h1>Birthday Trip</h1>
+    <div class="login-card">
+
+      <p class="login-small">
+        Welcome
+      </p>
+
+      <h1>
+        Birthday Trip
+      </h1>
+
+      <p class="login-message">
+        あいことばを入力してね
+      </p>
+
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="あいことば"
+      >
+
+      <button id="loginButton">
+        はじめる
+      </button>
+
+      <p id="loginError" class="login-error"></p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       旅のトップ画面
+  ========================== -->
+  <main id="mainScreen"
+        class="start-screen hidden">
+
+    <div class="card">
+
+      <p class="small-text">
+        Happy Birthday
+      </p>
+
+      <h1>
+        Birthday Trip
+      </h1>
 
       <p class="message">
         ふたりだけの旅へ<br>
         ようこそ！
       </p>
 
-      <div class="island">🏝️</div>
+      <div class="island">
+        🏝️
+      </div>
 
       <button id="startButton">
         たびをはじめる
       </button>
+
     </div>
+
   </main>
 
+
   <script src="script.js"></script>
+
 </body>
+
 </html>
