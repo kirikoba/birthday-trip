@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================================
 
   // あいことば
-  const correctPassword = "birthday2026";
-
+  const correctPassword = "akn__rn20";
   // 旅行開始日
   const TRIP_START_DATE = "2027-01-05";
 
