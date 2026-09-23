@@ -1,19 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  // =============================
+  // =========================================
   // 設定
-  // =============================
-  const correctPassword = "akn__rn20";
+  // =========================================
+
+  // あいことば
+  const correctPassword = "birthday2026";
+
+  // 旅行開始日
+  const TRIP_START_DATE = "2027-01-05";
+
+  // テストモード
+  // true  = TEST_DATEを使う
+  // false = 実際の日付を使う
+  const TEST_MODE = true;
+
+  // テストしたい日付
+  // 例：
+  // "2027-01-04" → 旅行前
+  // "2027-01-05" → 旅行当日
+  const TEST_DATE = "2027-01-05";
 
 
-  // =============================
+  // =========================================
   // HTML取得
-  // =============================
+  // =========================================
+
   const loginScreen =
     document.getElementById("loginScreen");
 
-  const mainScreen =
-    document.getElementById("mainScreen");
+  const beforeTripScreen =
+    document.getElementById("beforeTripScreen");
+
+  const tripMenuScreen =
+    document.getElementById("tripMenuScreen");
 
   const passwordInput =
     document.getElementById("passwordInput");
@@ -27,113 +47,271 @@ document.addEventListener("DOMContentLoaded", function () {
   const togglePassword =
     document.getElementById("togglePassword");
 
-  const startButton =
-    document.getElementById("startButton");
+  const startTripButton =
+    document.getElementById("startTripButton");
+
+  const memoryButton =
+    document.getElementById("memoryButton");
+
+  const memoryMessage =
+    document.getElementById("memoryMessage");
 
 
-  // =============================
-  // すでにログイン済みなら飛ばす
-  // =============================
-const loginTime =
-  localStorage.getItem("birthdayTripLoginTime");
+  // =========================================
+  // 12時間ログイン判定
+  // =========================================
 
-const twelveHours =
-  12 * 60 * 60 * 1000;
+  const loginTime =
+    localStorage.getItem("birthdayTripLoginTime");
 
-if (loginTime) {
+  const twelveHours =
+    12 * 60 * 60 * 1000;
 
-  const elapsedTime =
-    Date.now() - Number(loginTime);
+  if (loginTime) {
 
-  if (elapsedTime < twelveHours) {
+    const elapsedTime =
+      Date.now() - Number(loginTime);
 
-    showMainScreen();
-
-  } else {
-
-    localStorage.removeItem(
-      "birthdayTripLoginTime"
-    );
-
-  }
-
-}
-
-  // =============================
-  // パスワード表示 / 非表示
-  // =============================
-  togglePassword.addEventListener("click", function () {
-
-    if (passwordInput.type === "password") {
-
-      passwordInput.type = "text";
-      togglePassword.textContent = "🙈";
-
-    } else {
-
-      passwordInput.type = "password";
-      togglePassword.textContent = "👁";
-
-    }
-
-  });
-
-
-  // =============================
-  // ログイン
-  // =============================
-  loginButton.addEventListener("click", function () {
-
-    const inputPassword =
-      passwordInput.value;
-
-    if (inputPassword === correctPassword) {
-
-      localStorage.setItem(
-        "birthdayTripLoggedIn",
-        "true"
-      );
+    if (elapsedTime < twelveHours) {
 
       showMainScreen();
 
     } else {
 
-      loginError.textContent =
-        "あいことばが違うみたい…";
+      localStorage.removeItem(
+        "birthdayTripLoginTime"
+      );
 
     }
-
-  });
-
-
-  // Enterでもログイン
-  passwordInput.addEventListener("keydown", function (event) {
-
-    if (event.key === "Enter") {
-      loginButton.click();
-    }
-
-  });
-
-
-  // =============================
-  // メイン画面表示
-  // =============================
-  function showMainScreen() {
-
-    loginScreen.classList.add("hidden");
-    mainScreen.classList.remove("hidden");
 
   }
 
 
-  // =============================
-  // 旅開始
-  // =============================
-  startButton.addEventListener("click", function () {
+  // =========================================
+  // パスワード表示 / 非表示
+  // =========================================
 
-    alert("たびのはじまり！");
+  togglePassword.addEventListener(
+    "click",
+    function () {
 
-  });
+      if (passwordInput.type === "password") {
+
+        passwordInput.type = "text";
+        togglePassword.textContent = "🙈";
+
+      } else {
+
+        passwordInput.type = "password";
+        togglePassword.textContent = "👁";
+
+      }
+
+    }
+  );
+
+
+  // =========================================
+  // ログインボタン
+  // =========================================
+
+  loginButton.addEventListener(
+    "click",
+    function () {
+
+      const inputPassword =
+        passwordInput.value;
+
+      if (inputPassword === correctPassword) {
+
+        // ログイン時刻を保存
+        localStorage.setItem(
+          "birthdayTripLoginTime",
+          Date.now().toString()
+        );
+
+        loginError.textContent = "";
+
+        showMainScreen();
+
+      } else {
+
+        loginError.textContent =
+          "あいことばが違うみたい…";
+
+      }
+
+    }
+  );
+
+
+  // =========================================
+  // Enterでもログイン
+  // =========================================
+
+  passwordInput.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (event.key === "Enter") {
+
+        loginButton.click();
+
+      }
+
+    }
+  );
+
+
+  // =========================================
+  // ログイン後
+  // =========================================
+
+  function showMainScreen() {
+
+    loginScreen.classList.add("hidden");
+
+    checkTripDate();
+
+  }
+
+
+  // =========================================
+  // 旅行日の判定
+  // =========================================
+
+  function checkTripDate() {
+
+    let today;
+
+    if (TEST_MODE) {
+
+      today =
+        new Date(TEST_DATE + "T00:00:00");
+
+    } else {
+
+      today =
+        new Date();
+
+    }
+
+    const tripStartDate =
+      new Date(
+        TRIP_START_DATE + "T00:00:00"
+      );
+
+
+    if (today < tripStartDate) {
+
+      showBeforeTripScreen();
+
+    } else {
+
+      showTripMenu();
+
+    }
+
+  }
+
+
+  // =========================================
+  // 旅行前画面
+  // =========================================
+
+  function showBeforeTripScreen() {
+
+    beforeTripScreen.classList.remove(
+      "hidden"
+    );
+
+    tripMenuScreen.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  // =========================================
+  // 旅行メニュー画面
+  // =========================================
+
+  function showTripMenu() {
+
+    beforeTripScreen.classList.add(
+      "hidden"
+    );
+
+    tripMenuScreen.classList.remove(
+      "hidden"
+    );
+
+    checkTripProgress();
+
+  }
+
+
+  // =========================================
+  // 旅をしたか確認
+  // =========================================
+
+  function checkTripProgress() {
+
+    const tripStarted =
+      localStorage.getItem(
+        "birthdayTripStarted"
+      );
+
+    if (tripStarted === "true") {
+
+      memoryButton.disabled = false;
+
+      memoryMessage.textContent = "";
+
+    } else {
+
+      memoryButton.disabled = true;
+
+      memoryMessage.textContent =
+        "旅をしたあとに見られるよ";
+
+    }
+
+  }
+
+
+  // =========================================
+  // 「旅をはじめる」
+  // =========================================
+
+  startTripButton.addEventListener(
+    "click",
+    function () {
+
+      localStorage.setItem(
+        "birthdayTripStarted",
+        "true"
+      );
+
+      checkTripProgress();
+
+      alert("たびのはじまり！");
+
+    }
+  );
+
+
+  // =========================================
+  // 「思い出を見返す」
+  // =========================================
+
+  memoryButton.addEventListener(
+    "click",
+    function () {
+
+      alert("思い出ページはこれから作るよ！");
+
+    }
+  );
 
 });

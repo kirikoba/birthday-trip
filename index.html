@@ -60,39 +60,60 @@
   </section>
 
 
-  <!-- =========================
-       旅のトップ画面
-  ========================== -->
-  <main id="mainScreen"
-        class="start-screen hidden">
+<!-- =========================
+     まだ旅行日前
+========================== -->
+<section id="beforeTripScreen" class="hidden">
+  <div class="card">
+    <p>もう少しだけ待ってね</p>
 
-    <div class="card">
+    <h1>Birthday Trip</h1>
 
-      <p class="small-text">
-        Happy Birthday
-      </p>
+    <p>
+      当日になったら<br>
+      もう一度ログインしてね！
+    </p>
 
-      <h1>
-        Birthday Trip
-      </h1>
-
-      <p class="message">
-        ふたりだけの旅へ<br>
-        ようこそ！
-      </p>
-
-      <div class="island">
-        🏝️
-      </div>
-
-      <button id="startButton">
-        たびをはじめる
-      </button>
-
+    <div class="island">
+      🌱
     </div>
+  </div>
+</section>
 
-  </main>
 
+<!-- =========================
+     旅行メニュー
+========================== -->
+<section id="tripMenuScreen" class="hidden">
+
+  <div class="card">
+
+    <p class="small-text">
+      Welcome
+    </p>
+
+    <h1>
+      Birthday Trip
+    </h1>
+
+    <button id="startTripButton">
+      たびをはじめる
+    </button>
+
+    <button
+      id="memoryButton"
+      disabled
+    >
+      思い出を見返す
+    </button>
+
+    <p id="memoryMessage">
+      旅をしたあとに見られるよ
+    </p>
+
+  </div>
+
+</section>
 
   <script src="script.js"></script>
 
