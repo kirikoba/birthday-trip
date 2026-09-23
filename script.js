@@ -34,13 +34,30 @@ document.addEventListener("DOMContentLoaded", function () {
   // =============================
   // すでにログイン済みなら飛ばす
   // =============================
-  const isLoggedIn =
-    localStorage.getItem("birthdayTripLoggedIn");
+const loginTime =
+  localStorage.getItem("birthdayTripLoginTime");
 
-  if (isLoggedIn === "true") {
+const twelveHours =
+  12 * 60 * 60 * 1000;
+
+if (loginTime) {
+
+  const elapsedTime =
+    Date.now() - Number(loginTime);
+
+  if (elapsedTime < twelveHours) {
+
     showMainScreen();
+
+  } else {
+
+    localStorage.removeItem(
+      "birthdayTripLoginTime"
+    );
+
   }
 
+}
 
   // =============================
   // パスワード表示 / 非表示
