@@ -81,35 +81,59 @@
 </section>
 
 
-<!-- =========================
-     旅行メニュー
-========================== -->
-<section id="tripMenuScreen" class="hidden">
+<!-- =================================
+     旅行メニュー画面
+================================= -->
+<section id="tripMenuScreen" class="trip-menu-screen hidden">
 
-  <div class="card">
+  <div class="trip-hero">
 
-    <p class="small-text">
-      Welcome
-    </p>
+    <!-- 背景を少し暗くして文字を見やすくする -->
+    <div class="trip-overlay"></div>
 
-    <h1>
-      Birthday Trip
-    </h1>
 
-    <button id="startTripButton">
-      たびをはじめる
-    </button>
+    <!-- 下のメニュー -->
+    <div class="trip-menu-panel">
 
-    <button
-      id="memoryButton"
-      disabled
-    >
-      思い出を見返す
-    </button>
+      <p class="trip-welcome">
+        Welcome to
+      </p>
 
-    <p id="memoryMessage">
-      旅をしたあとに見られるよ
-    </p>
+      <h1 class="trip-title">
+        Birthday Trip
+      </h1>
+
+      <p class="trip-subtitle">
+        ふたりだけの特別な旅へ
+      </p>
+
+
+      <!-- 旅をはじめる -->
+      <button
+        id="startTripButton"
+        class="trip-button start-button"
+      >
+        <span class="button-icon">✈️</span>
+        <span>たびをはじめる</span>
+      </button>
+
+
+      <!-- 思い出 -->
+      <button
+        id="memoryButton"
+        class="trip-button memory-button"
+        disabled
+      >
+        <span class="button-icon">📷</span>
+        <span>思い出を見返す</span>
+      </button>
+
+
+      <p id="memoryMessage" class="memory-message">
+        旅をしたあとに見られるよ
+      </p>
+
+    </div>
 
   </div>
 
