@@ -1,146 +1,111 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birthday Trip</title>
-
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- =========================
-       ログイン画面
-  ========================== -->
-  <section id="loginScreen" class="login-screen">
+  <div class="page-wrap">
 
-    <div class="login-card">
+    <!-- =========================
+         ログイン画面
+    ========================== -->
+    <section id="loginScreen" class="screen">
+      <div class="leaf-card login-card">
 
-      <p class="login-small">
-        Welcome
-      </p>
+        <p class="small-welcome">Welcome</p>
 
-      <h1>
-        Birthday Trip
-      </h1>
+        <div class="title-logo">
+          <div class="title-row">
+            <span class="title-box orange">B</span>
+            <span class="title-box green">I</span>
+            <span class="title-box pink">R</span>
+            <span class="title-box blue">T</span>
+            <span class="title-box yellow">H</span>
+          </div>
+          <div class="title-row">
+            <span class="title-box lime">D</span>
+            <span class="title-box coral">A</span>
+            <span class="title-box sky">Y</span>
+          </div>
+          <div class="title-row">
+            <span class="title-box orange">T</span>
+            <span class="title-box green">R</span>
+            <span class="title-box pink">I</span>
+            <span class="title-box tree-box">P</span>
+          </div>
+        </div>
 
-      <p class="login-message">
-        あいことばを入力してね
-      </p>
+        <p class="message-text">あいことばを入力してね</p>
 
-      <div class="password-wrap">
-        <input
+        <div class="password-wrap">
+          <input
             type="password"
             id="passwordInput"
             placeholder="あいことば"
           >
+          <button type="button" id="togglePassword" class="eye-button">👁</button>
+        </div>
 
-        <button
-          type="button"
-          id="togglePassword"
-          class="toggle-password"
-        >
-          👁
+        <button id="loginButton" class="wood-button big-wood">
+          <span>はじめる</span>
         </button>
+
+        <p id="loginError" class="error-text"></p>
       </div>
+    </section>
 
-      <button id="loginButton">
-        はじめる
-      </button>
+    <!-- =========================
+         ログイン後のメイン画面
+    ========================== -->
+    <section id="mainScreen" class="screen hidden">
+      <div class="leaf-card main-card">
 
-      <p id="loginError" class="login-error"></p>
+        <p class="small-welcome">Welcome to</p>
 
-    </div>
+        <div class="title-logo">
+          <div class="title-row">
+            <span class="title-box orange">B</span>
+            <span class="title-box green">I</span>
+            <span class="title-box pink">R</span>
+            <span class="title-box blue">T</span>
+            <span class="title-box yellow">H</span>
+          </div>
+          <div class="title-row">
+            <span class="title-box lime">D</span>
+            <span class="title-box coral">A</span>
+            <span class="title-box sky">Y</span>
+          </div>
+          <div class="title-row">
+            <span class="title-box orange">T</span>
+            <span class="title-box green">R</span>
+            <span class="title-box pink">I</span>
+            <span class="title-box tree-box">P</span>
+          </div>
+        </div>
 
-  </section>
+        <p class="sub-text">ふたりだけの特別な旅へ</p>
 
+        <!-- 日付による案内文を出したい時に使える -->
+        <p id="dateMessage" class="date-message"></p>
 
-<!-- =========================
-     まだ旅行日前
-========================== -->
-<section id="beforeTripScreen" class="hidden">
-  <div class="card">
-    <p>もう少しだけ待ってね</p>
+        <div class="menu-buttons">
+          <button id="startTripButton" class="wood-button">
+            🌿 たびをはじめる
+          </button>
 
-    <h1>Birthday Trip</h1>
-
-    <p>
-      当日になったら<br>
-      もう一度ログインしてね！
-    </p>
-
-    <div class="island">
-      🌱
-    </div>
-  </div>
-</section>
-
-
-<!-- =================================
-     旅行メニュー画面
-================================= -->
-<section id="tripMenuScreen" class="trip-menu-screen hidden">
-
-  <div class="trip-hero">
-
-    <!-- 背景を少し暗くして文字を見やすくする -->
-    <div class="trip-overlay"></div>
-
-
-    <!-- 下のメニュー -->
-    <div class="trip-menu-panel">
-
-      <p class="trip-welcome">
-        Welcome to
-      </p>
-
-      <h1 class="trip-title">
-        Birthday Trip
-      </h1>
-
-      <p class="trip-subtitle">
-        ふたりだけの特別な旅へ
-      </p>
-
-
-      <!-- 旅をはじめる -->
-      <button
-        id="startTripButton"
-        class="trip-button start-button"
-      >
-        <span class="button-icon">✈️</span>
-        <span>たびをはじめる</span>
-      </button>
-
-
-      <!-- 思い出 -->
-      <button
-        id="memoryButton"
-        class="trip-button memory-button"
-        disabled
-      >
-        <span class="button-icon">📷</span>
-        <span>思い出を見返す</span>
-      </button>
-
-
-      <p id="memoryMessage" class="memory-message">
-        旅をしたあとに見られるよ
-      </p>
-
-    </div>
+          <button id="memoryButton" class="wood-button wood-button-dark">
+            📷 思い出を見返す
+          </button>
+        </div>
+      </div>
+    </section>
 
   </div>
-
-</section>
 
   <script src="script.js"></script>
-
 </body>
-
 </html>
