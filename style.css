@@ -151,3 +151,37 @@ button {
 
   margin-top: 20px;
 }
+.password-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#passwordInput {
+  width: 100%;
+  padding: 18px 60px 18px 20px;
+  border: 3px solid #78c091;
+  border-radius: 25px;
+  font-size: 22px;
+  outline: none;
+  text-align: center;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  background: transparent;
+
+  font-size: 24px;
+  cursor: pointer;
+}
