@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // =============================
   // 設定
   // =============================
-  const correctPassword = "birthday2026";
+  const correctPassword = "akn__rn20";
 
 
   // =============================
